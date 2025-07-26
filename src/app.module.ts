@@ -4,10 +4,15 @@ import { AppService } from './app.service';
 import { HelloModule } from './modules/hello/hello.module';
 import { ConfigModule } from '@nestjs/config';
 import { EnvSchema } from './config/env.schema';
-import { z } from 'zod/v4';
+import { AuthModule } from '@thallesp/nestjs-better-auth';
+import { z } from 'zod';
+import { auth } from './lib/auth';
+import { DrizzleModule } from './modules/drizzle/drizzle.module';
 
 @Module({
+  controllers: [AppController],
   imports: [
+    AuthModule.forRoot(auth),
     ConfigModule.forRoot({
       isGlobal: true,
       validate: (config) => {
@@ -21,8 +26,8 @@ import { z } from 'zod/v4';
       },
     }),
     HelloModule,
+    DrizzleModule,
   ],
-  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
