@@ -9,7 +9,11 @@ import { expo } from '@better-auth/expo';
 import 'dotenv/config';
 
 export const auth = betterAuth({
-  trustedOrigins: ['ryde://'],
+  trustedOrigins: [
+    'ryde://',
+    'exp://192.168.253.136:8081',
+    'exp://localhost:8081',
+  ],
   database: drizzleAdapter(db, {
     provider: 'pg',
     schema,
