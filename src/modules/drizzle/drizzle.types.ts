@@ -1,4 +1,4 @@
 import * as schema from './schema';
-import { NeonHttpDatabase } from 'drizzle-orm/neon-http';
+import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 
-export type Drizzle = NeonHttpDatabase<typeof schema>;
+export type Drizzle = NodePgDatabase<typeof schema>;

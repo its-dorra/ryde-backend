@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { HelloModule } from './modules/hello/hello.module';
+
 import { ConfigModule } from '@nestjs/config';
 import { EnvSchema } from './config/env.schema';
 import { AuthModule } from '@thallesp/nestjs-better-auth';
 import { z } from 'zod';
 import { auth } from './lib/auth';
 import { DrizzleModule } from './modules/drizzle/drizzle.module';
+import { EmailModule } from './modules/email/email.module';
 
 @Module({
   controllers: [AppController],
@@ -25,8 +26,8 @@ import { DrizzleModule } from './modules/drizzle/drizzle.module';
         return result.data;
       },
     }),
-    HelloModule,
     DrizzleModule,
+    EmailModule,
   ],
   providers: [AppService],
 })
